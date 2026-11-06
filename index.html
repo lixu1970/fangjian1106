@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="服装定制"/>
+<meta name="format-detection" content="telephone=no"/>
+<title>服装实习定制</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#f4f6f8;color:#111;-webkit-text-size-adjust:100%}
+.wrap{max-width:980px;margin:auto;padding:10px}
+h1{font-size:25px;text-align:center;margin:8px 0 6px}
+.sub{text-align:center;font-size:13px;color:#64748b;margin:0 0 4px}
+.legend{text-align:center;font-size:12px;color:#8b95a5;margin:0 0 10px;line-height:1.5}
+.legend b{font-weight:400;background:#e4dfec;padding:0 4px;border-radius:3px;color:#3b2f52}
+.tablebox{overflow-x:auto;background:white;border-radius:10px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;table-layout:fixed}
+th,td{border:1px solid #999;text-align:center;padding:5px 4px;font-size:16px}
+th{position:sticky;top:0;background:#ffe95a;z-index:2;font-weight:700}
+col.c1{width:11%}
+col.c2{width:7%}
+col.c3{width:19%}
+col.c4,col.c5,col.c6,col.c7,col.c8{width:12.6%}
+td.group{font-weight:700;background:#ebf1de;white-space:normal;line-height:1.3;font-size:15px;vertical-align:middle}
+td.seq{font-weight:600;color:#334155;background:#fff}
+td.name{font-weight:600;white-space:nowrap}
+td.name.tone-g{background:#ebf1de}
+td.name.tone-p{background:#e4dfec}
+td.name.red{color:#ff0000}
+td.cell{padding:2px 0}
+button.check{width:36px;height:38px;border:0;background:transparent;font-size:27px;line-height:1;cursor:pointer;border-radius:8px;padding:0}
+button.check[data-task="1"]{color:#d62828}
+button.check[data-task="2"]{color:#1565c0}
+button.check[data-task="3"]{color:#16833a}
+button.check[data-task="4"]{color:#e87500}
+button.check[data-task="5"]{color:#7b2cbf}
+button.check.done{background:#e9f8ed}
+.summary{margin-top:14px;background:white;border-radius:12px;padding:10px}
+.task-summary{border-bottom:1px solid #ddd;padding:5px 0 9px}
+.task-summary:last-child{border-bottom:0}
+.summary-row{display:grid;grid-template-columns:70px minmax(0,1.18fr) minmax(0,1fr) minmax(0,1fr) minmax(0,.78fr);gap:4px;align-items:stretch;margin:8px 0}
+.summary-row strong{font-size:15px;text-align:center;align-self:center}
+.summary-row button{min-width:0;min-height:44px;border:1px solid #aaa;border-radius:9px;font-size:13px;font-weight:700;padding:2px;line-height:1.2;word-break:keep-all}
+.toggle-all{background:#fff}
+.stat.done{background:#eaf8ee;border-color:#82c796!important}
+.stat.undone{background:#fff1df;border-color:#e8aa5e!important}
+.name-list{display:none;margin:5px 2px 0;padding:7px 8px;background:#f8fafc;border:1px solid #e4e8ee;border-radius:7px;font-size:14px;line-height:1.65;text-align:left;word-break:break-all}
+.name-list b{white-space:nowrap}
+.name-list span{color:#334155}
+@media(max-width:600px){
+ .wrap{padding:2px} h1{font-size:21px;margin:6px 0 4px}
+ .sub{font-size:11px} .legend{font-size:10.5px;margin-bottom:6px}
+ th,td{font-size:11px;padding:3px 0}
+ th{padding:4px 0}
+ col.c1{width:48px}
+ col.c2{width:24px}
+ col.c3{width:48px}
+ col.c4,col.c5,col.c6,col.c7,col.c8{width:37px}
+ th:nth-child(n+4){font-size:10px;letter-spacing:-1px}
+ td.group{font-size:10px;letter-spacing:-.5px;line-height:1.25}
+ td.cell{padding:1px 0}
+ button.check{width:30px;height:32px;font-size:21px}
+ .summary{padding:8px}
+ .summary-row{grid-template-columns:54px minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr) minmax(0,.72fr);gap:3px}
+ .summary-row strong{font-size:12px}
+ .summary-row button{font-size:11px;padding:1px;letter-spacing:-.5px;min-height:40px}
+ .name-list{font-size:13px;padding:6px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>服装实习定制</h1>
+<div class="sub">版本号：V1.2 · 261017 · 房间1—房间12 · 共 24 人</div>
+<div class="legend">※ 红色姓名与<b>浅紫底色</b>沿用原入住表标记</div>
+<div class="tablebox">
+<table>
+<colgroup><col class="c1"/><col class="c2"/><col class="c3"/><col class="c4"/><col class="c5"/><col class="c6"/><col class="c7"/><col class="c8"/></colgroup>
+<thead><tr>
+<th>房间号</th><th>序号</th><th>入住姓名</th>
+<th>工服上衣</th><th>工服裤</th><th>返厂改</th><th>退订</th><th>其他</th>
+</tr></thead>
+<tbody><tr><td class="group" rowspan="2">房间1</td><td class="seq">1</td><td class="name tone-g">侯宇鹏</td><td class="cell"><button aria-label="侯宇鹏 工服上衣" class="check" data-room="房间1" data-person="1" data-task="1">□</button></td><td class="cell"><button aria-label="侯宇鹏 工服裤" class="check" data-room="房间1" data-person="1" data-task="2">□</button></td><td class="cell"><button aria-label="侯宇鹏 返厂改" class="check" data-room="房间1" data-person="1" data-task="3">□</button></td><td class="cell"><button aria-label="侯宇鹏 退订" class="check" data-room="房间1" data-person="1" data-task="4">□</button></td><td class="cell"><button aria-label="侯宇鹏 其他" class="check" data-room="房间1" data-person="1" data-task="5">□</button></td></tr><tr><td class="seq">2</td><td class="name tone-g red">武裕生</td><td class="cell"><button aria-label="武裕生 工服上衣" class="check" data-room="房间1" data-person="2" data-task="1">□</button></td><td class="cell"><button aria-label="武裕生 工服裤" class="check" data-room="房间1" data-person="2" data-task="2">□</button></td><td class="cell"><button aria-label="武裕生 返厂改" class="check" data-room="房间1" data-person="2" data-task="3">□</button></td><td class="cell"><button aria-label="武裕生 退订" class="check" data-room="房间1" data-person="2" data-task="4">□</button></td><td class="cell"><button aria-label="武裕生 其他" class="check" data-room="房间1" data-person="2" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间2</td><td class="seq">3</td><td class="name tone-g">王贵忠</td><td class="cell"><button aria-label="王贵忠 工服上衣" class="check" data-room="房间2" data-person="3" data-task="1">□</button></td><td class="cell"><button aria-label="王贵忠 工服裤" class="check" data-room="房间2" data-person="3" data-task="2">□</button></td><td class="cell"><button aria-label="王贵忠 返厂改" class="check" data-room="房间2" data-person="3" data-task="3">□</button></td><td class="cell"><button aria-label="王贵忠 退订" class="check" data-room="房间2" data-person="3" data-task="4">□</button></td><td class="cell"><button aria-label="王贵忠 其他" class="check" data-room="房间2" data-person="3" data-task="5">□</button></td></tr><tr><td class="seq">4</td><td class="name tone-g">李晓菲</td><td class="cell"><button aria-label="李晓菲 工服上衣" class="check" data-room="房间2" data-person="4" data-task="1">□</button></td><td class="cell"><button aria-label="李晓菲 工服裤" class="check" data-room="房间2" data-person="4" data-task="2">□</button></td><td class="cell"><button aria-label="李晓菲 返厂改" class="check" data-room="房间2" data-person="4" data-task="3">□</button></td><td class="cell"><button aria-label="李晓菲 退订" class="check" data-room="房间2" data-person="4" data-task="4">□</button></td><td class="cell"><button aria-label="李晓菲 其他" class="check" data-room="房间2" data-person="4" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间3</td><td class="seq">5</td><td class="name tone-g">高健</td><td class="cell"><button aria-label="高健 工服上衣" class="check" data-room="房间3" data-person="5" data-task="1">□</button></td><td class="cell"><button aria-label="高健 工服裤" class="check" data-room="房间3" data-person="5" data-task="2">□</button></td><td class="cell"><button aria-label="高健 返厂改" class="check" data-room="房间3" data-person="5" data-task="3">□</button></td><td class="cell"><button aria-label="高健 退订" class="check" data-room="房间3" data-person="5" data-task="4">□</button></td><td class="cell"><button aria-label="高健 其他" class="check" data-room="房间3" data-person="5" data-task="5">□</button></td></tr><tr><td class="seq">6</td><td class="name tone-g">王滨</td><td class="cell"><button aria-label="王滨 工服上衣" class="check" data-room="房间3" data-person="6" data-task="1">□</button></td><td class="cell"><button aria-label="王滨 工服裤" class="check" data-room="房间3" data-person="6" data-task="2">□</button></td><td class="cell"><button aria-label="王滨 返厂改" class="check" data-room="房间3" data-person="6" data-task="3">□</button></td><td class="cell"><button aria-label="王滨 退订" class="check" data-room="房间3" data-person="6" data-task="4">□</button></td><td class="cell"><button aria-label="王滨 其他" class="check" data-room="房间3" data-person="6" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间4</td><td class="seq">7</td><td class="name tone-g">季伟</td><td class="cell"><button aria-label="季伟 工服上衣" class="check" data-room="房间4" data-person="7" data-task="1">□</button></td><td class="cell"><button aria-label="季伟 工服裤" class="check" data-room="房间4" data-person="7" data-task="2">□</button></td><td class="cell"><button aria-label="季伟 返厂改" class="check" data-room="房间4" data-person="7" data-task="3">□</button></td><td class="cell"><button aria-label="季伟 退订" class="check" data-room="房间4" data-person="7" data-task="4">□</button></td><td class="cell"><button aria-label="季伟 其他" class="check" data-room="房间4" data-person="7" data-task="5">□</button></td></tr><tr><td class="seq">8</td><td class="name tone-g">郑岩</td><td class="cell"><button aria-label="郑岩 工服上衣" class="check" data-room="房间4" data-person="8" data-task="1">□</button></td><td class="cell"><button aria-label="郑岩 工服裤" class="check" data-room="房间4" data-person="8" data-task="2">□</button></td><td class="cell"><button aria-label="郑岩 返厂改" class="check" data-room="房间4" data-person="8" data-task="3">□</button></td><td class="cell"><button aria-label="郑岩 退订" class="check" data-room="房间4" data-person="8" data-task="4">□</button></td><td class="cell"><button aria-label="郑岩 其他" class="check" data-room="房间4" data-person="8" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间5</td><td class="seq">9</td><td class="name tone-g">吴迪</td><td class="cell"><button aria-label="吴迪 工服上衣" class="check" data-room="房间5" data-person="9" data-task="1">□</button></td><td class="cell"><button aria-label="吴迪 工服裤" class="check" data-room="房间5" data-person="9" data-task="2">□</button></td><td class="cell"><button aria-label="吴迪 返厂改" class="check" data-room="房间5" data-person="9" data-task="3">□</button></td><td class="cell"><button aria-label="吴迪 退订" class="check" data-room="房间5" data-person="9" data-task="4">□</button></td><td class="cell"><button aria-label="吴迪 其他" class="check" data-room="房间5" data-person="9" data-task="5">□</button></td></tr><tr><td class="seq">10</td><td class="name tone-g">李旭</td><td class="cell"><button aria-label="李旭 工服上衣" class="check" data-room="房间5" data-person="10" data-task="1">□</button></td><td class="cell"><button aria-label="李旭 工服裤" class="check" data-room="房间5" data-person="10" data-task="2">□</button></td><td class="cell"><button aria-label="李旭 返厂改" class="check" data-room="房间5" data-person="10" data-task="3">□</button></td><td class="cell"><button aria-label="李旭 退订" class="check" data-room="房间5" data-person="10" data-task="4">□</button></td><td class="cell"><button aria-label="李旭 其他" class="check" data-room="房间5" data-person="10" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间6</td><td class="seq">11</td><td class="name tone-g">崔胜</td><td class="cell"><button aria-label="崔胜 工服上衣" class="check" data-room="房间6" data-person="11" data-task="1">□</button></td><td class="cell"><button aria-label="崔胜 工服裤" class="check" data-room="房间6" data-person="11" data-task="2">□</button></td><td class="cell"><button aria-label="崔胜 返厂改" class="check" data-room="房间6" data-person="11" data-task="3">□</button></td><td class="cell"><button aria-label="崔胜 退订" class="check" data-room="房间6" data-person="11" data-task="4">□</button></td><td class="cell"><button aria-label="崔胜 其他" class="check" data-room="房间6" data-person="11" data-task="5">□</button></td></tr><tr><td class="seq">12</td><td class="name tone-g">赵峰</td><td class="cell"><button aria-label="赵峰 工服上衣" class="check" data-room="房间6" data-person="12" data-task="1">□</button></td><td class="cell"><button aria-label="赵峰 工服裤" class="check" data-room="房间6" data-person="12" data-task="2">□</button></td><td class="cell"><button aria-label="赵峰 返厂改" class="check" data-room="房间6" data-person="12" data-task="3">□</button></td><td class="cell"><button aria-label="赵峰 退订" class="check" data-room="房间6" data-person="12" data-task="4">□</button></td><td class="cell"><button aria-label="赵峰 其他" class="check" data-room="房间6" data-person="12" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间7</td><td class="seq">13</td><td class="name tone-g">杨春苗</td><td class="cell"><button aria-label="杨春苗 工服上衣" class="check" data-room="房间7" data-person="13" data-task="1">□</button></td><td class="cell"><button aria-label="杨春苗 工服裤" class="check" data-room="房间7" data-person="13" data-task="2">□</button></td><td class="cell"><button aria-label="杨春苗 返厂改" class="check" data-room="房间7" data-person="13" data-task="3">□</button></td><td class="cell"><button aria-label="杨春苗 退订" class="check" data-room="房间7" data-person="13" data-task="4">□</button></td><td class="cell"><button aria-label="杨春苗 其他" class="check" data-room="房间7" data-person="13" data-task="5">□</button></td></tr><tr><td class="seq">14</td><td class="name tone-g">张磊</td><td class="cell"><button aria-label="张磊 工服上衣" class="check" data-room="房间7" data-person="14" data-task="1">□</button></td><td class="cell"><button aria-label="张磊 工服裤" class="check" data-room="房间7" data-person="14" data-task="2">□</button></td><td class="cell"><button aria-label="张磊 返厂改" class="check" data-room="房间7" data-person="14" data-task="3">□</button></td><td class="cell"><button aria-label="张磊 退订" class="check" data-room="房间7" data-person="14" data-task="4">□</button></td><td class="cell"><button aria-label="张磊 其他" class="check" data-room="房间7" data-person="14" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间8</td><td class="seq">15</td><td class="name tone-p">邢建姝</td><td class="cell"><button aria-label="邢建姝 工服上衣" class="check" data-room="房间8" data-person="15" data-task="1">□</button></td><td class="cell"><button aria-label="邢建姝 工服裤" class="check" data-room="房间8" data-person="15" data-task="2">□</button></td><td class="cell"><button aria-label="邢建姝 返厂改" class="check" data-room="房间8" data-person="15" data-task="3">□</button></td><td class="cell"><button aria-label="邢建姝 退订" class="check" data-room="房间8" data-person="15" data-task="4">□</button></td><td class="cell"><button aria-label="邢建姝 其他" class="check" data-room="房间8" data-person="15" data-task="5">□</button></td></tr><tr><td class="seq">16</td><td class="name tone-p">胡雪静</td><td class="cell"><button aria-label="胡雪静 工服上衣" class="check" data-room="房间8" data-person="16" data-task="1">□</button></td><td class="cell"><button aria-label="胡雪静 工服裤" class="check" data-room="房间8" data-person="16" data-task="2">□</button></td><td class="cell"><button aria-label="胡雪静 返厂改" class="check" data-room="房间8" data-person="16" data-task="3">□</button></td><td class="cell"><button aria-label="胡雪静 退订" class="check" data-room="房间8" data-person="16" data-task="4">□</button></td><td class="cell"><button aria-label="胡雪静 其他" class="check" data-room="房间8" data-person="16" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间9</td><td class="seq">17</td><td class="name tone-p">顾小颜</td><td class="cell"><button aria-label="顾小颜 工服上衣" class="check" data-room="房间9" data-person="17" data-task="1">□</button></td><td class="cell"><button aria-label="顾小颜 工服裤" class="check" data-room="房间9" data-person="17" data-task="2">□</button></td><td class="cell"><button aria-label="顾小颜 返厂改" class="check" data-room="房间9" data-person="17" data-task="3">□</button></td><td class="cell"><button aria-label="顾小颜 退订" class="check" data-room="房间9" data-person="17" data-task="4">□</button></td><td class="cell"><button aria-label="顾小颜 其他" class="check" data-room="房间9" data-person="17" data-task="5">□</button></td></tr><tr><td class="seq">18</td><td class="name tone-p">杨鸿</td><td class="cell"><button aria-label="杨鸿 工服上衣" class="check" data-room="房间9" data-person="18" data-task="1">□</button></td><td class="cell"><button aria-label="杨鸿 工服裤" class="check" data-room="房间9" data-person="18" data-task="2">□</button></td><td class="cell"><button aria-label="杨鸿 返厂改" class="check" data-room="房间9" data-person="18" data-task="3">□</button></td><td class="cell"><button aria-label="杨鸿 退订" class="check" data-room="房间9" data-person="18" data-task="4">□</button></td><td class="cell"><button aria-label="杨鸿 其他" class="check" data-room="房间9" data-person="18" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间10</td><td class="seq">19</td><td class="name tone-p">张军霞</td><td class="cell"><button aria-label="张军霞 工服上衣" class="check" data-room="房间10" data-person="19" data-task="1">□</button></td><td class="cell"><button aria-label="张军霞 工服裤" class="check" data-room="房间10" data-person="19" data-task="2">□</button></td><td class="cell"><button aria-label="张军霞 返厂改" class="check" data-room="房间10" data-person="19" data-task="3">□</button></td><td class="cell"><button aria-label="张军霞 退订" class="check" data-room="房间10" data-person="19" data-task="4">□</button></td><td class="cell"><button aria-label="张军霞 其他" class="check" data-room="房间10" data-person="19" data-task="5">□</button></td></tr><tr><td class="seq">20</td><td class="name tone-p">耿红梅</td><td class="cell"><button aria-label="耿红梅 工服上衣" class="check" data-room="房间10" data-person="20" data-task="1">□</button></td><td class="cell"><button aria-label="耿红梅 工服裤" class="check" data-room="房间10" data-person="20" data-task="2">□</button></td><td class="cell"><button aria-label="耿红梅 返厂改" class="check" data-room="房间10" data-person="20" data-task="3">□</button></td><td class="cell"><button aria-label="耿红梅 退订" class="check" data-room="房间10" data-person="20" data-task="4">□</button></td><td class="cell"><button aria-label="耿红梅 其他" class="check" data-room="房间10" data-person="20" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间11</td><td class="seq">21</td><td class="name tone-p">王雪梅</td><td class="cell"><button aria-label="王雪梅 工服上衣" class="check" data-room="房间11" data-person="21" data-task="1">□</button></td><td class="cell"><button aria-label="王雪梅 工服裤" class="check" data-room="房间11" data-person="21" data-task="2">□</button></td><td class="cell"><button aria-label="王雪梅 返厂改" class="check" data-room="房间11" data-person="21" data-task="3">□</button></td><td class="cell"><button aria-label="王雪梅 退订" class="check" data-room="房间11" data-person="21" data-task="4">□</button></td><td class="cell"><button aria-label="王雪梅 其他" class="check" data-room="房间11" data-person="21" data-task="5">□</button></td></tr><tr><td class="seq">22</td><td class="name tone-p">易强文</td><td class="cell"><button aria-label="易强文 工服上衣" class="check" data-room="房间11" data-person="22" data-task="1">□</button></td><td class="cell"><button aria-label="易强文 工服裤" class="check" data-room="房间11" data-person="22" data-task="2">□</button></td><td class="cell"><button aria-label="易强文 返厂改" class="check" data-room="房间11" data-person="22" data-task="3">□</button></td><td class="cell"><button aria-label="易强文 退订" class="check" data-room="房间11" data-person="22" data-task="4">□</button></td><td class="cell"><button aria-label="易强文 其他" class="check" data-room="房间11" data-person="22" data-task="5">□</button></td></tr><tr><td class="group" rowspan="2">房间12</td><td class="seq">23</td><td class="name tone-p">王晓丽</td><td class="cell"><button aria-label="王晓丽 工服上衣" class="check" data-room="房间12" data-person="23" data-task="1">□</button></td><td class="cell"><button aria-label="王晓丽 工服裤" class="check" data-room="房间12" data-person="23" data-task="2">□</button></td><td class="cell"><button aria-label="王晓丽 返厂改" class="check" data-room="房间12" data-person="23" data-task="3">□</button></td><td class="cell"><button aria-label="王晓丽 退订" class="check" data-room="房间12" data-person="23" data-task="4">□</button></td><td class="cell"><button aria-label="王晓丽 其他" class="check" data-room="房间12" data-person="23" data-task="5">□</button></td></tr><tr><td class="seq">24</td><td class="name tone-p red">关方迪</td><td class="cell"><button aria-label="关方迪 工服上衣" class="check" data-room="房间12" data-person="24" data-task="1">□</button></td><td class="cell"><button aria-label="关方迪 工服裤" class="check" data-room="房间12" data-person="24" data-task="2">□</button></td><td class="cell"><button aria-label="关方迪 返厂改" class="check" data-room="房间12" data-person="24" data-task="3">□</button></td><td class="cell"><button aria-label="关方迪 退订" class="check" data-room="房间12" data-person="24" data-task="4">□</button></td><td class="cell"><button aria-label="关方迪 其他" class="check" data-room="房间12" data-person="24" data-task="5">□</button></td></tr>
+</tbody>
+</table>
+</div>
+<div class="summary">
+<div class="task-summary">
+<div class="summary-row">
+<strong>工服上衣</strong>
+<button class="toggle-all" onclick="toggleAllTask(1)">全选/全不选</button>
+<button class="stat done" id="done1" onclick="showDone(1)">完成（0）人</button>
+<button class="stat undone" id="undone1" onclick="showUndone(1)">未完成（24）人</button>
+<button class="refresh" onclick="refreshTask(1)">刷新</button>
+</div>
+<div class="name-list" id="list1"><b></b><span></span></div>
+</div>
+<div class="task-summary">
+<div class="summary-row">
+<strong>工服裤</strong>
+<button class="toggle-all" onclick="toggleAllTask(2)">全选/全不选</button>
+<button class="stat done" id="done2" onclick="showDone(2)">完成（0）人</button>
+<button class="stat undone" id="undone2" onclick="showUndone(2)">未完成（24）人</button>
+<button class="refresh" onclick="refreshTask(2)">刷新</button>
+</div>
+<div class="name-list" id="list2"><b></b><span></span></div>
+</div>
+<div class="task-summary">
+<div class="summary-row">
+<strong>返厂改</strong>
+<button class="toggle-all" onclick="toggleAllTask(3)">全选/全不选</button>
+<button class="stat done" id="done3" onclick="showDone(3)">完成（0）人</button>
+<button class="stat undone" id="undone3" onclick="showUndone(3)">未完成（24）人</button>
+<button class="refresh" onclick="refreshTask(3)">刷新</button>
+</div>
+<div class="name-list" id="list3"><b></b><span></span></div>
+</div>
+<div class="task-summary">
+<div class="summary-row">
+<strong>退订</strong>
+<button class="toggle-all" onclick="toggleAllTask(4)">全选/全不选</button>
+<button class="stat done" id="done4" onclick="showDone(4)">完成（0）人</button>
+<button class="stat undone" id="undone4" onclick="showUndone(4)">未完成（24）人</button>
+<button class="refresh" onclick="refreshTask(4)">刷新</button>
+</div>
+<div class="name-list" id="list4"><b></b><span></span></div>
+</div>
+<div class="task-summary">
+<div class="summary-row">
+<strong>其他</strong>
+<button class="toggle-all" onclick="toggleAllTask(5)">全选/全不选</button>
+<button class="stat done" id="done5" onclick="showDone(5)">完成（0）人</button>
+<button class="stat undone" id="undone5" onclick="showUndone(5)">未完成（24）人</button>
+<button class="refresh" onclick="refreshTask(5)">刷新</button>
+</div>
+<div class="name-list" id="list5"><b></b><span></span></div>
+</div>
+</div>
+</div>
+<script>
+const KEY='clothing_practice_custom_room_261017_v12';
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){state={}}
+const checks=[...document.querySelectorAll('.check')];
+let visibleMode={1:null,2:null,3:null,4:null,5:null};
+function k(b){return b.dataset.person+'-'+b.dataset.task}
+function renderButton(b){
+ const on=!!state[k(b)];
+ b.textContent=on?'✅':'□';
+ b.classList.toggle('done',on);
+ b.setAttribute('aria-pressed',on?'true':'false');
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function taskButtons(t){return checks.filter(b=>+b.dataset.task===t)}
+function personLabel(b){
+ const name=b.getAttribute('aria-label').replace(/ (工服上衣|工服裤|返厂改|退订|其他)$/,'');
+ return b.dataset.room+' '+name;
+}
+function updateStats(){
+ for(let t=1;t<=5;t++){
+  const arr=taskButtons(t);
+  const done=arr.filter(b=>!!state[k(b)]).length;
+  const d=document.getElementById('done'+t), u=document.getElementById('undone'+t);
+  if(d) d.textContent=`完成（${done}）人`;
+  if(u) u.textContent=`未完成（${arr.length-done}）人`;
+ }
+}
+function renderList(t){
+ const box=document.getElementById('list'+t),mode=visibleMode[t];
+ if(!mode){box.style.display='none';return}
+ const wantDone=mode==='done';
+ const names=taskButtons(t).filter(b=>!!state[k(b)]===wantDone).map(personLabel);
+ box.querySelector('b').textContent=wantDone?'已完成：':'未完成：';
+ box.querySelector('span').textContent=names.length?names.join('、'):(wantDone?'暂无完成人员':'全部完成');
+ box.style.display='block';
+}
+function showDone(t){visibleMode[t]='done';updateStats();renderList(t)}
+function showUndone(t){visibleMode[t]='undone';updateStats();renderList(t)}
+function refreshTask(t){updateStats();renderList(t)}
+function toggleAllTask(t){
+ const arr=taskButtons(t),allDone=arr.every(b=>!!state[k(b)]);
+ arr.forEach(b=>{
+  if(allDone) delete state[k(b)]; else state[k(b)]=true;
+  renderButton(b);
+ });
+ save();updateStats();renderList(t);
+}
+checks.forEach(b=>{
+ renderButton(b);
+ b.addEventListener('click',()=>{
+  state[k(b)]=!state[k(b)];
+  if(!state[k(b)]) delete state[k(b)];
+  renderButton(b);save();updateStats();renderList(+b.dataset.task);
+ });
+});
+updateStats();
+</script>
+</body>
+</html>
